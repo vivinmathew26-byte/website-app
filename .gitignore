@@ -1,0 +1,30 @@
+# --- secrets: never commit these ---
+.env
+*.env
+!.env.example
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# --- databases ---
+*.db
+*.sqlite3
+
+# --- Node (if you add tooling later) ---
+node_modules/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- logs ---
+*.log

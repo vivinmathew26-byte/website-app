@@ -1,0 +1,44 @@
+# Used on the deploy server (see Jenkinsfile's "Deploy" stage).
+# Unlike the root docker-compose.yml (which builds images locally for dev),
+# this one pulls the images Jenkins already built and pushed to the registry.
+#
+# Set REGISTRY_NAMESPACE in a .env file on the server, e.g.:
+#   REGISTRY_NAMESPACE=your-dockerhub-username
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mtt_user
+      POSTGRES_PASSWORD: mtt_password
+      POSTGRES_DB: mtt_db
+    volumes:
+      - mtt_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mtt_user -d mtt_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    image: ${REGISTRY_NAMESPACE}/mtt-api:latest
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      - ./backend/.env
+    environment:
+      DATABASE_URL: postgresql+psycopg2://mtt_user:mtt_password@db:5432/mtt_db
+
+  web:
+    image: ${REGISTRY_NAMESPACE}/mtt-web:latest
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+
+volumes:
+  mtt_pgdata:

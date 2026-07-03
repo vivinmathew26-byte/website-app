@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Mother Teresa Transport</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ============ LOGIN VIEW ============ -->
+<section class="login-screen" id="loginScreen">
+  <form class="login-card" id="loginForm">
+    <span class="login-brand">Mother&nbsp;Teresa<span>TRANSPORT</span></span>
+    <h1>Staff sign in</h1>
+    <p class="login-sub">Manage bookings and send status updates.</p>
+
+    <label class="field">
+      <span>Username</span>
+      <input type="text" name="username" required autocomplete="username">
+    </label>
+    <label class="field">
+      <span>Password</span>
+      <input type="password" name="password" required autocomplete="current-password">
+    </label>
+
+    <button type="submit" class="btn btn-primary btn-lg">Sign in</button>
+    <p class="login-error" id="loginError" role="alert"></p>
+  </form>
+</section>
+
+<!-- ============ DASHBOARD VIEW ============ -->
+<section class="dashboard" id="dashboard" hidden>
+  <header class="admin-header">
+    <span class="login-brand">Mother&nbsp;Teresa<span>TRANSPORT</span></span>
+    <div class="admin-header-right">
+      <span id="adminName" class="admin-name"></span>
+      <button class="btn btn-ghost btn-sm" id="logoutBtn">Log out</button>
+    </div>
+  </header>
+
+  <div class="dashboard-body">
+    <div class="dashboard-toolbar">
+      <input type="search" id="searchInput" placeholder="Search name, phone, tracking code, route…">
+      <select id="statusFilter">
+        <option value="">All statuses</option>
+        <option value="received">Received</option>
+        <option value="confirmed">Confirmed</option>
+        <option value="picked_up">Picked up</option>
+        <option value="in_transit">In transit</option>
+        <option value="delivered">Delivered</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+      <button class="btn btn-outline-navy btn-sm" id="refreshBtn">Refresh</button>
+    </div>
+
+    <div class="table-wrap">
+      <table class="bookings-table">
+        <thead>
+          <tr>
+            <th>Tracking</th>
+            <th>Customer</th>
+            <th>Route</th>
+            <th>Goods</th>
+            <th>Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="bookingsTableBody">
+          <tr><td colspan="6" class="table-empty">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============ DETAIL / STATUS UPDATE PANEL ============ -->
+  <aside class="detail-panel" id="detailPanel" hidden>
+    <div class="detail-panel-inner">
+      <button class="detail-close" id="detailClose" aria-label="Close">&times;</button>
+      <h2 id="detailTracking"></h2>
+      <span class="detail-status-badge" id="detailStatusBadge"></span>
+
+      <dl class="detail-facts" id="detailFacts"></dl>
+
+      <h3>History</h3>
+      <ul class="detail-history" id="detailHistory"></ul>
+
+      <h3>Update status</h3>
+      <form id="statusForm" class="status-form">
+        <label class="field">
+          <span>New status</span>
+          <select name="status" id="statusSelect" required>
+            <option value="received">Received</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="picked_up">Picked up</option>
+            <option value="in_transit">In transit</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Note (optional)</span>
+          <textarea name="note" rows="2" placeholder="e.g. Vehicle TN-38-XXXX assigned"></textarea>
+        </label>
+        <label class="checkbox-field">
+          <input type="checkbox" name="notify_customer" checked>
+          <span>Notify customer (email / WhatsApp / SMS)</span>
+        </label>
+        <button type="submit" class="btn btn-primary">Save update</button>
+        <p class="status-form-msg" id="statusFormMsg"></p>
+      </form>
+    </div>
+  </aside>
+</section>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track your consignment — Mother Teresa Transport</title>
+<meta name="description" content="Check the status of your Mother Teresa Transport booking using your tracking code.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header" id="top">
+  <div class="wrap header-row">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 32" width="40" height="27">
+          <rect x="1" y="10" width="27" height="15" rx="1.5" fill="var(--marigold)"/>
+          <path d="M28 14h9l8 7v4h-17z" fill="var(--marigold)"/>
+          <circle cx="12" cy="27" r="4" fill="var(--navy)" stroke="var(--paper)" stroke-width="1.5"/>
+          <circle cx="36" cy="27" r="4" fill="var(--navy)" stroke="var(--paper)" stroke-width="1.5"/>
+          <rect x="3" y="13" width="10" height="6" fill="var(--navy)" opacity="0.25"/>
+        </svg>
+      </span>
+      <span class="brand-name">Mother&nbsp;Teresa<span class="brand-name-sub">TRANSPORT</span></span>
+    </a>
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#book">Book</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-primary" href="index.html#book">Book a load</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="track-page">
+  <div class="wrap">
+    <p class="eyebrow">Track a booking</p>
+    <h1 class="section-title">Where's my consignment?</h1>
+    <p class="track-intro">Enter the tracking code from your booking confirmation, along with the phone number you booked with.</p>
+
+    <form class="track-form" id="trackForm">
+      <label class="field">
+        <span>Tracking code</span>
+        <input type="text" name="tracking_code" required placeholder="MTT-XXXXXX" autocapitalize="characters">
+      </label>
+      <label class="field">
+        <span>Phone number</span>
+        <input type="tel" name="phone" required placeholder="10-digit mobile number" pattern="[0-9]{10}">
+      </label>
+      <button type="submit" class="btn btn-primary btn-lg">Check status</button>
+    </form>
+
+    <div id="trackResult" class="track-result"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-bottom">
+    <span>© <span id="year"></span> Mother Teresa Transport, Coimbatore.</span>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
