@@ -19,13 +19,13 @@ pipeline {
     agent any
 
     environment {
-        REGISTRY_NAMESPACE = 'YOUR_DOCKERHUB_USERNAME'   // e.g. "palaraj"
+        REGISTRY_NAMESPACE = 'vivinsdevops'   // e.g. "palaraj"
         API_IMAGE  = "${REGISTRY_NAMESPACE}/mtt-api"
         WEB_IMAGE  = "${REGISTRY_NAMESPACE}/mtt-web"
         IMAGE_TAG  = "${env.BUILD_NUMBER}"
 
-        DEPLOY_HOST = 'YOUR_SERVER_IP_OR_HOSTNAME'        // e.g. "203.0.113.10"
-        DEPLOY_USER = 'deploy'                             // user on that server
+        DEPLOY_HOST = '3.26.130.6'        // e.g. "203.0.113.10"
+        DEPLOY_USER = 'ubuntu'                             // user on that server
         DEPLOY_PATH = '/opt/mother-teresa-transport'       // repo checkout location on that server
     }
 
