@@ -1,19 +1,3 @@
-// Jenkinsfile — build, push, and deploy Mother Teresa Transport.
-//
-// Before this runs, set up in Jenkins:
-//   1. Credentials (Manage Jenkins → Credentials):
-//        - "dockerhub-creds"   : Username/Password — your registry login
-//        - "deploy-ssh-key"    : SSH Username with private key — access to the
-//                                 server that will run `docker compose`
-//   2. A multibranch pipeline or a pipeline job pointed at this repo.
-//   3. Replace REGISTRY_NAMESPACE, DEPLOY_HOST and DEPLOY_PATH below with real values.
-//
-// What it does:
-//   - Builds the "api" image (backend/Dockerfile) and the "web" image (nginx/Dockerfile)
-//   - Tags each with the build number and "latest"
-//   - Pushes both to your registry
-//   - SSHes into the deploy host, pulls the new images, and restarts the stack
-//     with zero manual steps
 
 pipeline {
     agent any
